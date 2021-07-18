@@ -9,12 +9,13 @@ RUN yum install -y gcc
 
 
 ENV GO_VERSION 1.16.5
-RUN wget https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz && rm -rf /usr/local/go && tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
-RUN mkdir -p /workspace/bin /workspace/pkg /workspace/src
-ENV GOPATH /workspace
+RUN wget https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz && rm -rf /usr/local/go && tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz && rm go${GO_VERSION}.linux-amd64.tar.gz 
+RUN mkdir -p /go/bin /go/pkg /go/src
+ENV GOPATH /go
 RUN echo "export PATH=\"/usr/local/go/bin:/go/bin:$PATH\"" >> /root/.bashrc
 ENV PATH="usr/local/go/bin:/go/bin:${PATH}"
 RUN go env -w GO111MODULE=off
+
 
 
 ######
