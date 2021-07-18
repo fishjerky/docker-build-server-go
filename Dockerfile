@@ -2,9 +2,11 @@ FROM centos:7
 
 #############################
 # Go
-RUN yum install -y wget zip unzip gcc git which vim
-#RUN yum groupinstall -y development #for cloud9
-#RUN yum install -y glibc-static #for cloud9
+# required command
+RUN yum install -y tar zip unzip git gcc  wget
+# gcc is for oracle
+RUN yum install -y gcc 
+
 
 ENV GO_VERSION 1.16.5
 RUN wget https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz && rm -rf /usr/local/go && tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
